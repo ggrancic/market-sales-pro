@@ -26,7 +26,7 @@
                      <top>
                         <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="55.0" prefWidth="667.0" style="-fx-background-color: #909090;" BorderPane.alignment="CENTER">
                            <children>
-                              <Text fill="#1b1a1a" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos de Cliente">
+                              <Text fill="#1b1a1a" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos de Proveedor">
                                  <font>
                                     <Font name="System Bold" size="29.0" />
                                  </font>
