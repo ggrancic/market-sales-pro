@@ -10,3 +10,7 @@
 .gray-pane {
     -fx-background-color: #dcdede;
 }
+
+.auto-padding {
+    -fx-padding: auto;
+}
