@@ -21,10 +21,17 @@ public class HelloApplication extends Application {
 //        stage.setScene(scene);
 //        stage.show();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("VentanaRubros.fxml"));
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("VentanaRubros.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load());
+//        stage.setTitle("Gestión de Rubros");
+//        stage.setScene(scene);
+//        stage.show();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("VentanaPrincipal.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Gestión de Rubros");
+        stage.setTitle("MSP");
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 
