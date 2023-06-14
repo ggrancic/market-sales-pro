@@ -8,9 +8,22 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("vistaPrueba.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hola mundo");
+        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("vistaPrueba.fxml"));
+        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+//        stage.setTitle("Hola mundo");
+//        stage.setScene(scene);
+//        stage.show();
+
+
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LoginMSP.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load());
+//        stage.setTitle("Market Sales Pro");
+//        stage.setScene(scene);
+//        stage.show();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("VentanaRubros.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Gestión de Rubros");
         stage.setScene(scene);
         stage.show();
     }
