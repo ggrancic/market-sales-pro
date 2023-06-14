@@ -1,0 +1,12 @@
+.login-left-pane {
+    -fx-background-image: url("./imgs/gradient800x600.png");
+    -fx-background-size: cover;
+}
+
+.login-button {
+    -fx-background-color: #6333c1;
+}
+
+.gray-pane {
+    -fx-background-color: #dcdede;
+}
