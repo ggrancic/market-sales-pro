@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("vistaPrueba.fxml"));
@@ -27,7 +27,7 @@ public class HelloApplication extends Application {
 //        stage.setScene(scene);
 //        stage.show();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("VentanaPrincipal.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/VentanaPrincipal.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("MSP");
         stage.setScene(scene);
