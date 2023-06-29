@@ -1,8 +1,4 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
-CREATE SCHEMA IF NOT EXISTS `mercadito` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE DATABASE IF NOT EXISTS `mercadito`;
 USE `mercadito` ;
 
 -- -----------------------------------------------------
@@ -29,10 +25,10 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`empleados` (
   `id_empleado` INT NOT NULL,
   `nombre_usuario` VARCHAR(45) NULL,
   `clave` VARCHAR(45) NULL,
-  `esAdmin` CHAR NULL,
+  `esAdmin` CHAR(1) NULL,
   `idpersona` INT NOT NULL,
   PRIMARY KEY (`id_empleado`),
-  INDEX `fk_empleados_personas1_idx` (`idpersona` ASC) VISIBLE,
+  INDEX `fk_empleados_personas1_idx` (`idpersona` ASC),
   CONSTRAINT `fk_empleados_personas1`
     FOREIGN KEY (`idpersona`)
     REFERENCES `mercadito`.`personas` (`id_persona`)
@@ -53,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`factura_compras` (
   `subtotal` DECIMAL(10,2) NULL,
   `id_empleado` INT NOT NULL,
   PRIMARY KEY (`id_factura_compras`),
-  INDEX `fk_factura_compras_empleados1_idx` (`id_empleado` ASC) VISIBLE,
+  INDEX `fk_factura_compras_empleados1_idx` (`id_empleado` ASC),
   CONSTRAINT `fk_factura_compras_empleados1`
     FOREIGN KEY (`id_empleado`)
     REFERENCES `mercadito`.`empleados` (`id_empleado`)
@@ -61,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`factura_compras` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -73,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`rubros` (
   PRIMARY KEY (`id_rubro`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -84,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`proveedores` (
   `CUIT` VARCHAR(11) NULL,
   `id_persona` INT NOT NULL,
   PRIMARY KEY (`id_proveedor`),
-  INDEX `fk_proveedores_personas1_idx` (`id_persona` ASC) VISIBLE,
+  INDEX `fk_proveedores_personas1_idx` (`id_persona` ASC) ,
   CONSTRAINT `fk_proveedores_personas1`
     FOREIGN KEY (`id_persona`)
     REFERENCES `mercadito`.`personas` (`id_persona`)
@@ -106,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`productos` (
   `id_rubro` INT NOT NULL,
   `id_proveedor` INT NOT NULL,
   PRIMARY KEY (`id_producto`),
-  INDEX `fk_PRODUCTOS_RUBROS1_idx` (`id_rubro` ASC) VISIBLE,
-  INDEX `fk_productos_proveedores1_idx` (`id_proveedor` ASC) VISIBLE,
+  INDEX `fk_PRODUCTOS_RUBROS1_idx` (`id_rubro` ASC) ,
+  INDEX `fk_productos_proveedores1_idx` (`id_proveedor` ASC) ,
   CONSTRAINT `fk_PRODUCTOS_RUBROS1`
     FOREIGN KEY (`id_rubro`)
     REFERENCES `mercadito`.`rubros` (`id_rubro`)
@@ -119,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`productos` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -132,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`detalle_compra` (
   `id_factura_compras` INT NOT NULL,
   `id_producto` INT NOT NULL,
   PRIMARY KEY (`id_detalle_compra`),
-  INDEX `fk_DETALLE_COMPRA_COMPRAS1_idx` (`id_factura_compras` ASC) VISIBLE,
-  INDEX `fk_DETALLE_COMPRA_PRODUCTOS1_idx` (`id_producto` ASC) VISIBLE,
+  INDEX `fk_DETALLE_COMPRA_COMPRAS1_idx` (`id_factura_compras` ASC) ,
+  INDEX `fk_DETALLE_COMPRA_PRODUCTOS1_idx` (`id_producto` ASC) ,
   CONSTRAINT `fk_DETALLE_COMPRA_COMPRAS1`
     FOREIGN KEY (`id_factura_compras`)
     REFERENCES `mercadito`.`factura_compras` (`id_factura_compras`)
@@ -143,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`detalle_compra` (
     REFERENCES `mercadito`.`productos` (`id_producto`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -158,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`factura_ventas` (
   `total` DECIMAL(10,2) NULL,
   `idpersona` INT NOT NULL,
   PRIMARY KEY (`id_factura_ventas`),
-  INDEX `fk_factura_ventas_personas1_idx` (`idpersona` ASC) VISIBLE,
+  INDEX `fk_factura_ventas_personas1_idx` (`idpersona` ASC) ,
   CONSTRAINT `fk_factura_ventas_personas1`
     FOREIGN KEY (`idpersona`)
     REFERENCES `mercadito`.`personas` (`id_persona`)
@@ -166,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`factura_ventas` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -179,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`detalle_venta` (
   `cantidad_vendida` DECIMAL(2,2) NULL DEFAULT NULL,
   `descuento` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id_venta_producto`),
-  INDEX `fk_VENTA_PRODUCTO_PRODUCTO1_idx` (`id_producto` ASC) VISIBLE,
-  INDEX `fk_VENTA_PRODUCTO_VENTAS1_idx` (`id_factura_ventas` ASC) VISIBLE,
+  INDEX `fk_VENTA_PRODUCTO_PRODUCTO1_idx` (`id_producto` ASC) ,
+  INDEX `fk_VENTA_PRODUCTO_VENTAS1_idx` (`id_factura_ventas` ASC) ,
   CONSTRAINT `fk_VENTA_PRODUCTO_PRODUCTO1`
     FOREIGN KEY (`id_producto`)
     REFERENCES `mercadito`.`productos` (`id_producto`),
@@ -190,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`detalle_venta` (
     ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -200,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`clientes` (
   `id_cliente` INT NOT NULL AUTO_INCREMENT,
   `idpersona` INT NOT NULL,
   PRIMARY KEY (`id_cliente`),
-  INDEX `fk_clientes_personas1_idx` (`idpersona` ASC) VISIBLE,
+  INDEX `fk_clientes_personas1_idx` (`idpersona` ASC) ,
   CONSTRAINT `fk_clientes_personas1`
     FOREIGN KEY (`idpersona`)
     REFERENCES `mercadito`.`personas` (`id_persona`)
@@ -219,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`devoluciones` (
   `total` DECIMAL(10,2) NULL,
   `id_producto` INT NOT NULL,
   PRIMARY KEY (`id_devoluciones`),
-  INDEX `fk_devoluciones_productos1_idx` (`id_producto` ASC) VISIBLE,
+  INDEX `fk_devoluciones_productos1_idx` (`id_producto` ASC) ,
   CONSTRAINT `fk_devoluciones_productos1`
     FOREIGN KEY (`id_producto`)
     REFERENCES `mercadito`.`productos` (`id_producto`)
@@ -227,7 +223,3 @@ CREATE TABLE IF NOT EXISTS `mercadito`.`devoluciones` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
